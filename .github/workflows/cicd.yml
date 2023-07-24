@@ -18,6 +18,8 @@ jobs:
           run: dotnet restore
         - name: Build
           run: dotnet build --no-restore
+        - name: Test
+          run: dotnet test --no-build --verbosity normal
         - name: Publish
           run: dotnet publish ./src/SampleApplication.csproj -c Release -o ${{env.DOTNET_ROOT}}/webapp
         - name: Upload artifact
@@ -25,7 +27,3 @@ jobs:
           with:
             name: dotnet-webapp
             path: ${{env.DOTNET_ROOT}}/webapp
-        - name: Build
-          run: dotnet build --configuration Release --no-restore
-        - name: Test
-          run: dotnet test --no-restore --verbosity normal
