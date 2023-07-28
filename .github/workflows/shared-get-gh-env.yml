@@ -1,0 +1,27 @@
+name: GitHubの環境名を出力
+on:
+  workflow_call:
+    outputs:
+      env_name:
+        description: "GitHubの環境名"
+        value: ${{ jobs.get_env_name.outputs.env_name }}
+jobs:
+  get_env_name:
+    name: GitHubの環境名を出力
+    runs-on: ubuntu-latest
+    outputs:
+      env_name: ${{ steps.get_env_name.outputs.env_name }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: GitHubの環境名を出力
+        id: get_env_name
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "::set-output name=env_name::production"
+          elif [ "${{ github.ref_name }}" = "staging" ]; then
+            echo "::set-output name=env_name::staging"
+          fi
