@@ -1,6 +1,6 @@
 name: Main
 env:
-  AZURE_WEBAPP_NAME: app-app-hol-github-intermediate-matsumotowjjb    # Azure Web Appに設定した名前に変えてください
+  AZURE_WEBAPP_NAME: app-app-hol-github-intermediate-matsumotowjjb/STG    # Azure Web Appに設定した名前に変えてください
   AZURE_WEBAPP_PACKAGE_PATH: '.' 
 on:
   push:
