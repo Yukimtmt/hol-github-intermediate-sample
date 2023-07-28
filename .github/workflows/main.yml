@@ -24,12 +24,12 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal
       - name: Publish
-        run: dotnet publish ./src/SampleApplication.csproj -c Release -o ${{env.DOTNET_ROOT}}/webapp/test
+        run: dotnet publish ./src/SampleApplication.csproj -c Release -o ${{env.DOTNET_ROOT}}/webapp
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: dotnet-webapp
-          path: ${{env.DOTNET_ROOT}}/webapp/test
+          path: ${{env.DOTNET_ROOT}}/webapp
   deploy:
     name: Deploy
     needs: ["get_env_name", "build"]
